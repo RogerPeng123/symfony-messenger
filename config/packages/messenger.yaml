@@ -1,14 +1,19 @@
 framework:
+    #消息传输配置
     messenger:
         # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
         # failure_transport: failed
 
+        # 传输通道设置
         transports:
             # https://symfony.com/doc/current/messenger.html#transport-configuration
             # async: '%env(MESSENGER_TRANSPORT_DSN)%'
             # failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
+            async: "%env(MESSENGER_TRANSPORT_DSN)%?auto_setup=true&queue_name=async_table"
 
         routing:
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
+            # 这个消息传输的操作，会进入传输配置中,就会进入异步处理阶段
+            'App\Message\SmsNotification':  async
