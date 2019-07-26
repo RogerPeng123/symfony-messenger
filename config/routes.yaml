@@ -1,0 +1,7 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+one.to.one:
+  path: /one/to/one
+  controller: App\Controller\IndexController::index
