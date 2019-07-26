@@ -5,3 +5,7 @@
 one.to.one:
   path: /one/to/one
   controller: App\Controller\IndexController::index
+
+messenger.default:
+  path: /messenger/default
+  controller: App\Controller\IndexController::message

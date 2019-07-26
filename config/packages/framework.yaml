@@ -14,3 +14,12 @@ framework:
     #fragments: true
     php_errors:
         log: true
+
+    #消息传输配置
+    messenger:
+        transports:
+            async: "%env(MESSENGER_TRANSPORT_DSN)%"
+
+        routing:
+            # 这个消息传输的操作，会进入传输配置中,就会进入异步处理阶段
+            'App\Message\SmsNotification':  async

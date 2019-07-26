@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Message\SmsNotification;
 use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\HandledStamp;
 
 class IndexController extends AbstractController
 {
@@ -25,13 +28,14 @@ class IndexController extends AbstractController
         dd($data->getUId()->getNickName());
     }
 
-
-    public function example(string $string, array ...$array)
+    public function message(MessageBusInterface $bus)
     {
-    }
+        $result = $bus->dispatch(new SmsNotification('fist message'));
 
-    public function message()
-    {
+        dd($result->last(HandledStamp::class)->getResult());
+
+        $this->dispatchMessage(new SmsNotification('second message'));
+
         dd(132131);
     }
 }
