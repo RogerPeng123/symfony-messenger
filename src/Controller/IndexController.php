@@ -23,8 +23,6 @@ class IndexController extends AbstractController
 
         $data = $this->userService->getUserExtension($uid);
 
-//        $nickName = $data->getUId()->getBirthday();
-
         dd($data->getUId()->getNickName());
     }
 
