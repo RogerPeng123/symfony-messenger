@@ -5,8 +5,6 @@ namespace App\Model\Manager;
 use App\Entity\User;
 use App\Entity\UserExtension;
 use App\Model\UserInterface;
-use App\Repository\UserExtensionRepository;
-use App\Repository\UserRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class UserManager implements UserInterface
