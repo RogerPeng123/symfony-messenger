@@ -20,4 +20,6 @@ interface UserService
 
     public function getUserExtension(int $uid): UserExtension;
 
+    public function createUser(User $user): User;
+
 }

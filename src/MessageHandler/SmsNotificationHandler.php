@@ -28,7 +28,7 @@ class SmsNotificationHandler implements MessageHandlerInterface
         $this->logger->info($message->getContent());
 
 
-        $this->bus->dispatch(new SecondMessage('派发到第二个信息'));
+        $this->bus->dispatch(new SecondMessage('派发到第二个信息'),[]);
         return 'success';
     }
 }

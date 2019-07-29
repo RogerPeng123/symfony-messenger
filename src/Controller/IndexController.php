@@ -32,10 +32,12 @@ class IndexController extends AbstractController
     {
         $result = $bus->dispatch(new SmsNotification('fist message'));
 
-        dd($result->last(HandledStamp::class)->getResult());
+        dd('派发完成', $result);
 
-        $this->dispatchMessage(new SmsNotification('second message'));
+//        dd($result->last(HandledStamp::class)->getResult());
 
-        dd(132131);
+//        $this->dispatchMessage(new SmsNotification('second message'));
+
+//        dd(132131);
     }
 }

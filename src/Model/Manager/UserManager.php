@@ -31,5 +31,8 @@ class UserManager implements UserInterface
         return $this->userExtensionRepository->find($uid);
     }
 
-
+    public function createUser(User $user): User
+    {
+        return $this->userRepository->createUser($user);
+    }
 }
