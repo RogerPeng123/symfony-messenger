@@ -10,7 +10,17 @@ framework:
             # async: '%env(MESSENGER_TRANSPORT_DSN)%'
             # failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
-            async: "%env(MESSENGER_TRANSPORT_DSN)%?auto_setup=true&queue_name=async_table"
+            async:
+              dsn: "%env(MESSENGER_TRANSPORT_DSN)%?auto_setup=true&queue_name=async_table"
+              # default configuration
+              retry_strategy:
+                max_retries: 3
+                # milliseconds delay
+                delay: 1000
+                # causes the delay to be higher before each retry
+                # e.g. 1 second delay, 2 seconds, 4 seconds
+                multiplier: 2
+                max_delay: 0
 
         routing:
             # Route your messages to the transports
