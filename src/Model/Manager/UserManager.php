@@ -7,32 +7,31 @@ use App\Entity\UserExtension;
 use App\Model\UserInterface;
 use App\Repository\UserExtensionRepository;
 use App\Repository\UserRepository;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class UserManager implements UserInterface
 {
-    private $userRepository;
+    private $registry;
 
-    private $userExtensionRepository;
-
-    public function __construct(UserRepository $userRepository, UserExtensionRepository $userExtensionRepository)
+    public function __construct(RegistryInterface $registry)
     {
-        $this->userRepository = $userRepository;
-
-        $this->userExtensionRepository = $userExtensionRepository;
+        $this->registry = $registry;
     }
 
     public function getAllUser(int $id): User
     {
-        return $this->userRepository->find($id);
+        return $this->registry->getRepository(User::class)->find($id);
     }
 
     public function getUserExtensionByUid(int $uid): UserExtension
     {
-        return $this->userExtensionRepository->find($uid);
+        return $this->registry->getRepository(UserExtension::class)->find($uid);
     }
 
     public function createUser(User $user): User
     {
-        return $this->userRepository->createUser($user);
+        $this->registry->getRepository(User::class);
     }
+
+
 }
