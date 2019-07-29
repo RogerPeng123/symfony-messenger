@@ -30,7 +30,13 @@ class UserManager implements UserInterface
 
     public function createUser(User $user): User
     {
-        $this->registry->getRepository(User::class);
+        $this->registry->getManager()->getRepository(User::class);
+
+        $this->registry->getManager()->persist($user);
+
+        $this->registry->getManager()->flush();
+
+        return $user;
     }
 
 
