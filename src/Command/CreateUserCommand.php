@@ -11,8 +11,14 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 class CreateUserCommand extends Command
 {
+    /**
+     * @var string
+     */
     protected static $defaultName = 'app:create-user';
 
+    /**
+     * @var MessageBusInterface
+     */
     private $messageBus;
 
     public function __construct(MessageBusInterface $messageBus)
