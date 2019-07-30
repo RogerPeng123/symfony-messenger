@@ -3,7 +3,6 @@
 
 namespace App\Command;
 
-
 use App\Message\CreateUserMessage;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
