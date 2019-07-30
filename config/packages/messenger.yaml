@@ -1,29 +1,40 @@
 framework:
-    #消息传输配置
-    messenger:
-        # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
-        # failure_transport: failed
+  # 消息配置
+  messenger:
+    # 配置消息总线
+    default_bus: default.bus
+    buses:
+      # 第一条消息总线
+      default.bus:
+        # 消息总线的中间件
+        middleware:
+          - doctrine_ping_connection
+          - doctrine_close_connection
+          - doctrine_transaction
+      # 第二条消息总线
+      async.bus:
+        # 第二条消息总线的中间件配置
+        middleware:
+          - doctrine_ping_connection
+          - doctrine_close_connection
+          - doctrine_transaction
 
-        # 传输通道设置
-        transports:
-            # https://symfony.com/doc/current/messenger.html#transport-configuration
-            # async: '%env(MESSENGER_TRANSPORT_DSN)%'
-            # failed: 'doctrine://default?queue_name=failed'
-            # sync: 'sync://'
-            async:
-              dsn: "%env(MESSENGER_TRANSPORT_DSN)%?auto_setup=true&queue_name=async_table"
-              # default configuration
-              retry_strategy:
-                max_retries: 3
-                # milliseconds delay
-                delay: 1000
-                # causes the delay to be higher before each retry
-                # e.g. 1 second delay, 2 seconds, 4 seconds
-                multiplier: 2
-                max_delay: 0
+    # 传输通道设置
+    transports:
+      # 第一条通道
+      async:
+        dsn: "%env(MESSENGER_TRANSPORT_DSN)%?auto_setup=true&queue_name=async_table"
+        # 通道详细配置
+        retry_strategy:
+          # 如果执行失败,重复执行的次数
+          max_retries: 3
+          # 间隔时长
+          delay: 1000
+          # 每次间隔时长
+          multiplier: 2
+          max_delay: 0
 
-        routing:
-            # Route your messages to the transports
-            # 'App\Message\YourMessage': async
-            # 这个消息传输的操作，会进入传输配置中,就会进入异步处理阶段
-            'App\Message\SmsNotification':  async
+    # 异步消息传输路由设置
+    routing:
+      # 这个消息传输的操作，会进入传输配置中,就会进入异步处理阶段
+      'App\Message\SmsNotification':  async
