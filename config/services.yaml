@@ -26,8 +26,17 @@ services:
   # add more service definitions when explicit configuration is needed
   # please note that last definitions always *replace* previous ones
 
+  # S 注册命令
+  App\Command\CreateUserCommand:
+    class: App\Command\CreateUserCommand
+    public: true
+    autowire: true # 自动装配
+    tags:
+      - { name: console.command }
+  # E 注册命令
 
-  # 装配 消息处理器(messenger handler)
+
+  # S 消息处理器(messenger handler)
   App\MessageHandler\SmsNotificationHandler:
     # 指定处理器命名空间
     class: 'App\MessageHandler\SmsNotificationHandler'
@@ -41,3 +50,4 @@ services:
       - { name: messenger.message_handler,bus: async.bus }
   App\MessageHandler\SecondMessageHandler:
     tags: [messenger.message_handler]
+  # E 消息处理器(messenger handler)
