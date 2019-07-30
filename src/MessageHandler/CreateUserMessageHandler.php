@@ -3,7 +3,6 @@
 
 namespace App\MessageHandler;
 
-
 use App\Entity\User;
 use App\Message\CreateUserMessage;
 use App\Service\UserService;
