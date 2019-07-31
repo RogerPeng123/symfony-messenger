@@ -85,7 +85,7 @@ class UserManager implements UserInterface
         return $this->registry->getManager()->getRepository(User::class)->findAll();
     }
 
-    public function getUserExtensionByUids(User $user): UserExtension
+    public function setUserExtensionByUids(User $user): ?UserExtension
     {
         $data = $this->registry
             ->getManager()
@@ -95,10 +95,6 @@ class UserManager implements UserInterface
             ->setParameter('uid', $user->getId())
             ->getQuery()
             ->getOneOrNullResult();
-
-        if ($data === null) {
-            $data = $this->createExtension($user);
-        }
 
         return $data;
     }

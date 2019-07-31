@@ -13,7 +13,7 @@ interface UserService
 
     public function getUserExtension(int $uid): UserExtension;
 
-    public function getUserExtensionByUid(User $uid): UserExtension;
+    public function getUserExtensionByUid(User $uid): ?UserExtension;
 
     public function createUserExtension(User $user): UserExtension;
 

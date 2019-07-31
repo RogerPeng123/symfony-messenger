@@ -48,9 +48,9 @@ class UserServiceImpl implements UserService
         return $this->userServerMapper->createExtension($user);
     }
 
-    public function getUserExtensionByUid(User $uid): UserExtension
+    public function getUserExtensionByUid(User $user): ?UserExtension
     {
-        return $this->userServerMapper->getUserExtensionByUids($uid);
+        return $this->userServerMapper->setUserExtensionByUids($user);
     }
 
 

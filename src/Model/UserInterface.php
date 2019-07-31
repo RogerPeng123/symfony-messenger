@@ -14,7 +14,7 @@ interface UserInterface
 
     public function getUserExtensionByUid(int $uid): UserExtension;
 
-    public function getUserExtensionByUids(User $uid): UserExtension;
+    public function setUserExtensionByUids(User $user): ?UserExtension;
 
     public function createExtension(User $user): UserExtension;
 

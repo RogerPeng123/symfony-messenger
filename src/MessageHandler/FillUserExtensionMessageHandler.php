@@ -25,7 +25,10 @@ class FillUserExtensionMessageHandler implements MessageHandlerInterface
         $userList = $this->userService->getAll();
         foreach ($userList as $item) {
             if ($item instanceof User) {
-                $this->userService->getUserExtensionByUid($item);
+                $userExtension = $this->userService->getUserExtensionByUid($item);
+                if ($userExtension === null) {
+                    $this->userService->createUserExtension($item);
+                }
             }
         }
     }
