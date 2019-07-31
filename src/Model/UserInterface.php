@@ -23,4 +23,6 @@ interface UserInterface
     public function deleteUser(int $id): int;
 
     public function getAll(): array;
+
+    public function updateUser(User $user): User;
 }

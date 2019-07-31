@@ -47,6 +47,13 @@ services:
     autowire: true
     tags:
       - { name: console.command }
+
+  App\Command\UpdateUserCommand:
+    class: App\Command\UpdateUserCommand
+    public: true
+    autowire: true
+    tags:
+      - { name: console.command }
   # E 注册命令
 
 

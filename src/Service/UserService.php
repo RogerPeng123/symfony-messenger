@@ -23,4 +23,6 @@ interface UserService
 
     public function getAll(): array;
 
+    public function saveUser(User $user): User;
+
 }

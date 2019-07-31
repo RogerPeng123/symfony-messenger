@@ -53,5 +53,10 @@ class UserServiceImpl implements UserService
         return $this->userServerMapper->setUserExtensionByUids($user);
     }
 
+    public function saveUser(User $user): User
+    {
+        return $this->userServerMapper->updateUser($user);
+    }
+
 
 }

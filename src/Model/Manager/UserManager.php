@@ -119,5 +119,19 @@ class UserManager implements UserInterface
         return $UserExtension;
     }
 
+    public function updateUser(User $user): User
+    {
+        try {
+            $this->registry->getManager()->getRepository(User::class);
+            $this->registry->getManager()->persist($user);
+            $this->registry->getManager()->flush();
+        } catch (ORMInvalidArgumentException $exception) {
+
+            $this->logger->error($exception->getMessage());
+        }
+
+        return $user;
+    }
+
 
 }
