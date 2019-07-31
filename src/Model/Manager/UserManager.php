@@ -18,12 +18,12 @@ class UserManager implements UserInterface
 
     public function getAllUser(int $id): User
     {
-        return $this->registry->getRepository(User::class)->find($id);
+        return $this->registry->getManager()->find(User::class, $id);
     }
 
     public function getUserExtensionByUid(int $uid): UserExtension
     {
-        return $this->registry->getRepository(UserExtension::class)->find($uid);
+        return $this->registry->getManager()->find(UserExtension::class, $uid);
     }
 
     public function createUser(User $user): User
