@@ -33,5 +33,25 @@ class UserServiceImpl implements UserService
         return $this->userServerMapper->createUser($user);
     }
 
+    public function deleteUser(int $id): int
+    {
+        return $this->userServerMapper->deleteUser($id);
+    }
+
+    public function getAll(): array
+    {
+        return $this->userServerMapper->getAll();
+    }
+
+    public function createUserExtension(User $user): UserExtension
+    {
+        return $this->userServerMapper->createExtension($user);
+    }
+
+    public function getUserExtensionByUid(User $uid): UserExtension
+    {
+        return $this->userServerMapper->getUserExtensionByUids($uid);
+    }
+
 
 }

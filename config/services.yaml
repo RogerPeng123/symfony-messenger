@@ -33,6 +33,20 @@ services:
     autowire: true # 自动装配
     tags:
       - { name: console.command }
+
+  App\Command\DeleteUserCommand:
+    class: App\Command\DeleteUserCommand
+    public: true
+    autowire: true
+    tags:
+      - { name: console.command }
+
+  App\Command\SetUserAndExtensionCommand:
+    class: App\Command\SetUserAndExtensionCommand
+    public: true
+    autowire: true
+    tags:
+      - { name: console.command }
   # E 注册命令
 
 

@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\HandledStamp;
 
 class CreateUserCommand extends Command
 {
@@ -41,9 +42,11 @@ class CreateUserCommand extends Command
     {
         $nickName = $input->getArgument('nick_name');
 
-        $this->messageBus->dispatch(new CreateUserMessage($nickName));
+        $result = $this->messageBus->dispatch(new CreateUserMessage($nickName));
 
-        $output->writeln("命令执行了");
+        $user = $result->last(HandledStamp::class)->getResult();
+
+        $output->writeln("命令执行了,新建数据为: " . $user->getId());
     }
 
 }
