@@ -9,7 +9,6 @@ use App\Entity\Reference\Product;
 use App\Model\FeatureManager;
 use App\Model\ProductManager;
 use App\Tools\GetRandTools;
-use Doctrine\ORM\ORMInvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -65,7 +64,7 @@ class ProductManagerImpl implements ProductManager
 
             $this->registry->getConnection()->commit();
             return $product;
-        } catch (ORMInvalidArgumentException $exception) {
+        } catch (\Exception $exception) {
 
             $this->logger->error('错误信息',
                 ['message' => $exception->getMessage()]);
