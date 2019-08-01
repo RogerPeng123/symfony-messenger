@@ -9,3 +9,11 @@ one.to.one:
 messenger.default:
   path: /messenger/default
   controller: App\Controller\IndexController::message
+
+doctrine.curd.one.to.one:
+  path: /curd/one/{uid}
+  controller: App\Controller\IndexController::curdOneToOne
+
+doctrine.curd.one.to.many.double:
+  path: /curd/one/many/double/{pid}
+  controller: App\Controller\IndexController::curdOneToMany

@@ -54,6 +54,13 @@ services:
     autowire: true
     tags:
       - { name: console.command }
+
+  App\Command\ProductActionCommand:
+    class: App\Command\ProductActionCommand
+    public: true
+    autowire: true
+    tags:
+      - { name: console.command }
   # E 注册命令
 
 

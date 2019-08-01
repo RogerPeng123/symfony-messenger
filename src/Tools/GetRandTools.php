@@ -10,6 +10,18 @@ namespace App\Tools;
  */
 class GetRandTools
 {
+    public static function getRandStringZh($num): string
+    {
+        $chinese = '';
+        for ($i = 0; $i < $num; $i++) {
+            // 使用chr()函数拼接双字节汉字，前一个chr()为高位字节，后一个为低位字节
+            $a = chr(mt_rand(0xB0, 0xD0)) . chr(mt_rand(0xA1, 0xF0));
+            // 转码
+            $chinese .= iconv('GB2312', 'UTF-8', $a);
+        }
+        return $chinese;
+    }
+
     /**
      * 生成随机的float值
      * Author: roger peng
